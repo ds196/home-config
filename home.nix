@@ -9,9 +9,16 @@
 
     extraConfig = ''
       set number
+
+      " cursor
+      augroup RestoreCursorShapeOnExit
+        autocmd!
+	autocmd VimLeave * set guicursor=a:ver20
+      augroup END
     '';
 
     extraLuaConfig = ''
+      -- vscode-nvim
       vim.o.background = 'dark'
       local c = require('vscode.colors').get_colors()
       require('vscode').setup({
@@ -20,6 +27,22 @@
 	disable_nvimtree_bg = true
       })
       vim.cmd.colorscheme "vscode"
+
+      -- snacks-nvim
+      require('snacks').setup({
+        bigfile = { enabled = true },
+	indent = { enabled = true },
+	input = { enabled = true },
+	scope = { enabled = true },
+	quickfile = { enabled = true }
+      })
+
+      -- lualine-nvim
+      require('lualine').setup({
+        options = {
+	  theme = 'codedark'
+	}
+      })
     '';
     
     plugins = with pkgs.vimPlugins; [
@@ -34,6 +57,7 @@
       rainbow-delimiters-nvim
       vscode-nvim
       snacks-nvim
+      lualine-nvim
     ];
 
     coc = {
