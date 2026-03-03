@@ -1,5 +1,5 @@
 {
-  description = "Home Manager configuration of david";
+  description = "Home Manager configuration of ds0196";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -31,7 +31,7 @@
       };
     in
     {
-      homeConfigurations."david" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."ds0196" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,

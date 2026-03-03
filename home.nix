@@ -7,6 +7,11 @@
   programs.neovim = {
     enable = true;
 
+    defaultEditor = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+
     extraConfig = ''
       set number
 
@@ -84,6 +89,32 @@
     };
 
   };
+
+
+  programs.zsh = {
+    enable = true;
+
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    historySubstringSearch.enable = true;
+    syntaxHighlighting.enable = true;
+    oh-my-zsh.plugins = [
+      pkgs.zsh-nix-shell
+    ];
+  };
+  home.sessionVariables = {
+    HYPHEN_INSENSITIVE = "true";
+  };
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    colors = "auto";
+    icons = "auto";
+  };
   
 
   home.packages =
@@ -105,6 +136,7 @@
             ros2-controllers
             control-msgs
             robot-state-publisher
+	    rqt-graph
           ];
         }
       )
@@ -119,8 +151,8 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "david";
-  home.homeDirectory = "/home/david";
+  home.username = "ds0196";
+  home.homeDirectory = "/home/student/ds0196";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
