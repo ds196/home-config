@@ -13,13 +13,19 @@
     vimdiffAlias = true;
 
     extraConfig = ''
-      set number
+      set number relativenumber
+      set scrolloff=3
 
       " cursor
       augroup RestoreCursorShapeOnExit
         autocmd!
 	autocmd VimLeave * set guicursor=a:ver20
       augroup END
+
+      " line highlighting
+      hi CursorLine cterm=NONE
+      hi CursorLineNR cterm=bold
+      set cursorline
     '';
 
     extraLuaConfig = ''
@@ -95,15 +101,25 @@
     enable = true;
 
     enableCompletion = true;
+    enableVteIntegration = true;
+    autocd = false;
     autosuggestion.enable = true;
-    historySubstringSearch.enable = true;
+    completionInit = "zstyle ':completion:*' completer _expand_alias _complete _ignored _correct && zstyle ':completion:*' max-errors 2 && autoload -Uz compinit && compinit";
     syntaxHighlighting.enable = true;
-    oh-my-zsh.plugins = [
-      pkgs.zsh-nix-shell
-    ];
+    historySubstringSearch.enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "colored-man-pages"
+	"colorize"
+	"command-not-found"
+	"copyfile"
+      ];
+    };
   };
   home.sessionVariables = {
     HYPHEN_INSENSITIVE = "true";
+    COMPLETION_WAITING_DOTS="true";
   };
   programs.starship = {
     enable = true;
@@ -122,6 +138,14 @@
       colcon
       nixfmt-rfc-style
       nixgl.nixGLIntel
+      zsh-nix-shell
+      direnv
+      nix-direnv
+      xclip
+      ripgrep
+      fd
+      silver-searcher
+      texliveSmall
       #nixgl.nixGLNvidia  # shi no work
       (
         with rosPackages.humble;
@@ -147,6 +171,7 @@
       scipy
       crccheck
       black
+      pylatexenc
     ]);
 
   # Home Manager needs a bit of information about you and the
