@@ -8,6 +8,9 @@
   home.packages =
     (with pkgs; [
       nix-direnv
+      git
+      gh
+      openssh
     ]);
 
   home = {
