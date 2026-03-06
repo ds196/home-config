@@ -5,7 +5,6 @@
       nixfmt-rfc-style
       zsh-nix-shell
       direnv
-      nix-direnv
       xclip
       ripgrep
       fd

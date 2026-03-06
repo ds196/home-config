@@ -5,6 +5,10 @@
     ./editor.nix
     ./packages
   ];
+  home.packages =
+    (with pkgs; [
+      nix-direnv
+    ]);
 
   home = {
     # Blackhawk -- ds0196@blackhawk.ece.uah.edu
