@@ -124,6 +124,23 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    settings = {
+      add_newline = true;
+      nix_shell = {symbol = " ";};
+      directory = {read_only = " 󰌾";};
+      os.symbols = {
+        Alpine = " ";
+        Arch = " ";
+	Debian = " ";
+	Fedora = " ";
+	Kali = " ";
+	Macos = " ";
+	Redhat = " ";
+        Ubuntu = " ";
+	Windows = "󰍲 ";
+      };
+      python = {symbol = " ";};
+    };
   };
   programs.eza = {
     enable = true;
