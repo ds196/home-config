@@ -19,4 +19,10 @@
     ":q" = "exit";
     "nixgl" = "nixGLIntel";
   };
+
+  programs.zsh.siteFunctions = {
+    md = ''
+      pandoc "''${1:-README.md}" | lynx -stdin
+    '';
+  };
 }

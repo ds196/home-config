@@ -12,6 +12,7 @@
     extraConfig = ''
       set number relativenumber
       set scrolloff=3
+      set smartcase
 
       " cursor
       augroup RestoreCursorShapeOnExit

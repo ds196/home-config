@@ -15,6 +15,8 @@
       rsync
       gnutar
       curl
+      pandoc
+      lynx
     ])
     ++ (with pkgs.python313Packages; [
       pylatexenc

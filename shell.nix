@@ -44,6 +44,10 @@
           exit_zsh() { exit }
           zle -N exit_zsh
           bindkey '^D' exit_zsh
+
+          # oh-my-zsh/directories defines these for some reason, I use md as a markdown viewer
+          unalias md
+          unalias rd
         '';
         zshConfigAfter = lib.mkOrder 1500 ''
           export PAGER=bat  # Set after oh-my-zsh
