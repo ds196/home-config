@@ -17,6 +17,7 @@
       curl
       pandoc
       lynx
+      lsb-release
     ])
     ++ (with pkgs.python313Packages; [
       pylatexenc

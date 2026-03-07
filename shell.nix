@@ -35,10 +35,10 @@
         '';
         zshConfig = lib.mkOrder 1000 ''
           # Setup cdr instead of the directory stack
-          autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-          add-zsh-hook chpwd chpwd_recent_dirs
-          zstyle ':completion:*:*:cdr:*:*' menu selection
-          zstyle ':chpwd:*' recent-dirs-file ~/.zchpwd/chpwd-recent-dirs-''${TTY##*/} +
+          #autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+          #add-zsh-hook chpwd chpwd_recent_dirs
+          #zstyle ':completion:*:*:cdr:*:*' menu selection
+          #zstyle ':chpwd:*' recent-dirs-file ~/.zchpwd/chpwd-recent-dirs-''${TTY##*/} +
 
           # Exit shell on Ctrl+D even if the command line is filled
           exit_zsh() { exit }
@@ -51,6 +51,20 @@
         '';
         zshConfigAfter = lib.mkOrder 1500 ''
           export PAGER=bat  # Set after oh-my-zsh
+          eval "$(register-python-argcomplete ros2)"
+          eval "$(register-python-argcomplete colcon)"
+          [ -f $HOME/.ros2helpers.sh ] && source $HOME/.ros2helpers.sh
+          [ -f $HOME/.tmpros.sh ] && source $HOME/.tmpros.sh
+
+          # Enforce powerlevel10k configuration depending on environment
+          # To customize prompt, run 'p10k configure' or edit ~/.p10k.zsh.
+          if [ "$TERM" = "linux" ]; then
+            [[ ! -f ~/.p10k.ascii.zsh ]]  || source ~/.p10k.ascii.zsh
+          elif [ "$TERM_PROGRAM" = "vscode" ]; then
+            [[ ! -f ~/.p10k.vscode.zsh ]] || source ~/.p10k.vscode.zsh
+          else
+            [[ ! -f ~/.p10k.uni.zsh ]]    || source ~/.p10k.uni.zsh
+          fi
         '';
       in
       lib.mkMerge [
@@ -83,7 +97,7 @@
 
     plugins = [
       {
-        name = "powerlevel10k-config";
+        name = "powerlevel10k-config";  # Leaving this in just in case ig
         src = ./packages;
         file = ".p10k.uni.zsh";
       }
@@ -106,6 +120,11 @@
     };
 
   };
+
+  home.file.".p10k.ascii.zsh".source = packages/.p10k.ascii.zsh;
+  home.file.".p10k.vscode.zsh".source = packages/.p10k.vscode.zsh;
+  home.file.".p10k.uni.zsh".source = packages/.p10k.uni.zsh;
+  home.file.".ros2helpers.sh".source = packages/.ros2helpers.sh;
 
   # 'ls' alternative
   programs.eza = {

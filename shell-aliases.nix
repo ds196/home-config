@@ -24,5 +24,8 @@
     md = ''
       pandoc "''${1:-README.md}" | lynx -stdin
     '';
+    led_off = ''
+      ros2 topic pub --once /anchor/relay std_msgs/String "{data: 'led_set,0,0,0\n'}"
+    '';
   };
 }

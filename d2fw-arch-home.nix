@@ -7,6 +7,7 @@
 {
   imports = [
     #./shell.nix
+    #./arch-shell.nix
     ./editor.nix
     ./packages
   ];
