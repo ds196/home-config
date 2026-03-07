@@ -20,6 +20,8 @@
     ]
   );
 
+  targets.genericLinux.enable = true;
+
   home = {
     # Blackhawk -- ds0196@blackhawk.ece.uah.edu
     username = "ds0196";

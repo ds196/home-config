@@ -12,6 +12,9 @@
     ./packages
   ];
 
+  targets.genericLinux.enable = true;
+  targets.genericLinux.gpu.enable = true;
+
   home = {
     # My laptop -- david@d2framework
     username = "david";
