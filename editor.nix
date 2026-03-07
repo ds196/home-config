@@ -7,6 +7,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withNodeJs = true;
 
     extraConfig = ''
       set number relativenumber

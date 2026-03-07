@@ -10,6 +10,11 @@
       fd
       silver-searcher
       texliveSmall
+      trash-cli
+      bat
+      rsync
+      gnutar
+      curl
     ])
     ++ (with pkgs.python313Packages; [
       pylatexenc
