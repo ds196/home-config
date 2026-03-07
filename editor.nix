@@ -15,7 +15,7 @@
       " cursor
       augroup RestoreCursorShapeOnExit
         autocmd!
-	autocmd VimLeave * set guicursor=a:ver20
+      autocmd VimLeave * set guicursor=a:ver20
       augroup END
 
       " line highlighting
@@ -30,28 +30,28 @@
       local c = require('vscode.colors').get_colors()
       require('vscode').setup({
         transparent = true,
-	italic_comments = true,
-	disable_nvimtree_bg = true
+        italic_comments = true,
+        disable_nvimtree_bg = true
       })
       vim.cmd.colorscheme "vscode"
 
       -- snacks-nvim
       require('snacks').setup({
         bigfile = { enabled = true },
-	indent = { enabled = true },
-	input = { enabled = true },
-	scope = { enabled = true },
-	quickfile = { enabled = true }
+        indent = { enabled = true },
+        input = { enabled = true },
+        scope = { enabled = true },
+        quickfile = { enabled = true }
       })
 
       -- lualine-nvim
       require('lualine').setup({
         options = {
-	  theme = 'codedark'
-	}
+          theme = 'codedark'
+        }
       })
     '';
-    
+
     plugins = with pkgs.vimPlugins; [
       coc-html
       coc-pyright

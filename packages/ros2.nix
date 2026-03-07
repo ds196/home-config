@@ -17,8 +17,8 @@
             control-msgs
             robot-state-publisher
             rqt-graph
-	    rmw-cyclonedds-cpp
-	    zed-msgs
+            rmw-cyclonedds-cpp
+            zed-msgs
           ];
         }
       )

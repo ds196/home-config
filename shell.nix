@@ -25,18 +25,21 @@
           fi
 
           path+="$HOME/.local/bin"
-          '';
-        zshConfig = lib.mkOrder 1000 ""; 
+        '';
+        zshConfig = lib.mkOrder 1000 "";
       in
-        lib.mkMerge [ zshConfigEarlyInit zshConfig ];
+      lib.mkMerge [
+        zshConfigEarlyInit
+        zshConfig
+      ];
 
     oh-my-zsh = {
       enable = true;
       plugins = [
         "colored-man-pages"
-	"colorize"
-	"command-not-found"
-	"copyfile"
+        "colorize"
+        "command-not-found"
+        "copyfile"
       ];
     };
 
@@ -57,7 +60,7 @@
 
   home.sessionVariables = {
     HYPHEN_INSENSITIVE = "true";
-    COMPLETION_WAITING_DOTS="true";
+    COMPLETION_WAITING_DOTS = "true";
   };
 
   # 'ls' alternative

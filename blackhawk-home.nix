@@ -1,17 +1,24 @@
-{ inputs, config, pkgs, ... }:
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./shell.nix
     ./editor.nix
     ./packages
   ];
-  home.packages =
-    (with pkgs; [
+  home.packages = (
+    with pkgs;
+    [
       nix-direnv
       git
       gh
       openssh
-    ]);
+    ]
+  );
 
   home = {
     # Blackhawk -- ds0196@blackhawk.ece.uah.edu
