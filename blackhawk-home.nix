@@ -21,6 +21,8 @@
   );
 
   targets.genericLinux.enable = true;
+  targets.genericLinux.gpu.enable = false;
+
 
   home = {
     # Blackhawk -- ds0196@blackhawk.ece.uah.edu
