@@ -6,6 +6,10 @@
     "cat" = "bat";
     "ls" =
       "eza --across --icons=auto --hyperlink --header --smart-group --mounts --git --git-repos-no-status --color=auto -h";
+    "la" = "ls -a";
+    "ll" = "ls -l";
+    "lla" = "ls -lla";
+    "lt" = "ls --tree";
 
     "cprult" = "rsync --info=progress2 -auvAUU";
     "untar" = "tar -xvf";
