@@ -15,9 +15,9 @@ ROS_DISTRO=humble  # Default to Humble if not on Ubuntu
 CURR_SHELL=$(ps -cp "$$" -o command="")
 
 # Just source, but build if needed
-alias sw='start_ws'  # This is now a circular dependency. This could never go wrong.
+alias sw='start_ws'
 # Build and source
-alias bs='verify_ws $PWD && buildws && sw'
+alias bs='verify_ws $PWD && buildws && sourcews'
 alias cbs='verify_ws $PWD && rm -rf build/ install/ || bs'
 
 
@@ -53,10 +53,13 @@ start_ws() {
 
 	cd $DIR
 
-	[ -f ./install/setup.$CURR_SHELL ] && source ./install/setup.$CURR_SHELL || bs
+	[ -f "./install/setup.$CURR_SHELL" ] && sourcews || bs
 }
 
 # Build a workspace. Mainly just here to keep the flags in one spot.
 # This is an alias for adding addl. flags
 alias buildws='colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
+
+# Just source a workspace. Just source it. Includes sourced workspaces when building.
+alias sourcews='source install/setup.$CURR_SHELL'
 
