@@ -15,13 +15,16 @@
     enableVteIntegration = true;
     autocd = false;
     autosuggestion.enable = true;
-    completionInit = "autoload -Uz compinit && compinit && zstyle ':completion:*' completer _expand_alias _complete _ignored _correct && zstyle ':completion:*' regular true && zstyle ':completion:*' max-errors 2 && zstyle ':completion:*' rehash true";  # Still doesn't tab-complete aliases... not sure why.
+    completionInit = "autoload -Uz compinit && compinit && zstyle ':completion:*' completer _expand_alias _complete _ignored _correct && zstyle ':completion:*' regular true && zstyle ':completion:*' max-errors 2 && zstyle ':completion:*' rehash true"; # Still doesn't tab-complete aliases... not sure why.
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
 
     initContent =
       let
         zshConfigEarlyInit = lib.mkOrder 500 ''
+          # https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#how-do-i-initialize-direnv-when-using-instant-prompt
+          (( ''${+commands[direnv]} )) && emulate zsh -c "$(direnv export zsh)"
+
           # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
           # Initialization code that may require console input (password prompts, [y/n]
           # confirmations, etc.) must go above this block; everything else may go below.
@@ -50,6 +53,7 @@
           unalias rd
         '';
         zshConfigAfter = lib.mkOrder 1500 ''
+          (( ''${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"  # After oh-my-zsh
           export PAGER=bat  # Set after oh-my-zsh
           eval "$(register-python-argcomplete ros2)"
           eval "$(register-python-argcomplete colcon)"
@@ -90,14 +94,13 @@
         "colorize"
         "command-not-found"
         "copyfile"
-	"direnv"
-	"z"
+        "z"
       ];
     };
 
     plugins = [
       {
-        name = "powerlevel10k-config";  # Leaving this in just in case ig
+        name = "powerlevel10k-config"; # Leaving this in just in case ig
         src = ./packages;
         file = ".p10k.uni.zsh";
       }
