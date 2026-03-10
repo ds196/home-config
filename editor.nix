@@ -15,6 +15,11 @@
         set scrolloff=3
         set smartcase
 
+        " undo
+        silent !mkdir -p $HOME/.cache/vim-undo
+        set undodir=~/.cache/vim-undo
+        set undofile
+
         " coc
         set updatetime=300
         set signcolumn=yes
