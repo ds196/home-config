@@ -31,5 +31,34 @@
     led_off = ''
       ros2 topic pub --once /anchor/relay std_msgs/String "{data: 'led_set,0,0,0\n'}"
     '';
+    c = # sh
+      ''
+        	# Compile a c/cpp program
+        	# I'm getting tired of accidentally overwriting all of my code
+        	if [ -z "$1" ]; then
+        		echo "No file provided"
+        		echo
+        		return 1;
+        	fi
+        	if [ ! -f "$1" ]; then
+        		echo "Error: file not found: $1"
+        		echo
+        		return 1;
+        	fi
+        	if [[ "$1" != *.c && "$1" != *.cpp ]]; then
+        		echo "Error: requested source file is not a C/CPP source file: $1"
+        		echo
+        		return 1;
+        	fi
+        	cp "$1" ".$1.bak"
+        	echo "=== Starting compilation. ==="
+        	set -x
+        	[[ "$1" == *.c ]] && gcc "$1" -o "''${1%.*}" || g++ -Wall -std=c++17 "$1" -o "''${1%.*}"
+            CODE=$?
+        	set +x
+        	echo "=== Compiled ''${1%.*}. ==="
+        	echo
+            return $CODE;
+      '';
   };
 }
