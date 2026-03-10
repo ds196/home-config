@@ -14,10 +14,15 @@
       set scrolloff=3
       set smartcase
 
+      " tabs
+      set expandtab
+      autocmd FileType * setlocal tabstop=4 shiftwidth=4 softtabstop=4
+      autocmd FileType nix setlocal tabstop=2 shiftwidth=2 softtabstop=2
+
       " cursor
       augroup RestoreCursorShapeOnExit
         autocmd!
-      autocmd VimLeave * set guicursor=a:ver20
+        autocmd VimLeave * set guicursor=a:ver20
       augroup END
 
       " line highlighting

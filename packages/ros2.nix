@@ -11,10 +11,8 @@
           ament-cmake-core
           python-cmake-module
           ros2-control
-          ros2-controllers
           control-msgs
           robot-state-publisher
-          rqt-graph
           rmw-cyclonedds-cpp
           zed-msgs
         ];

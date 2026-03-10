@@ -15,8 +15,8 @@
     [
       nix-direnv
       git
-      gh
       openssh
+      ncdu
     ]
   );
 
