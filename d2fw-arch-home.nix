@@ -10,6 +10,7 @@
     ./arch-shell.nix
     ./editor.nix
     ./packages
+    ./packages/graphical.nix
   ];
   home.packages = with pkgs; [
     texliveSmall
