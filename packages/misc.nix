@@ -4,7 +4,6 @@
     (with pkgs; [
       nixfmt-rfc-style
       zsh-nix-shell
-      direnv
       xclip
       ripgrep
       fd
@@ -16,5 +15,6 @@
       curl
       lsb-release
       tmux
+      nh
     ]);
 }

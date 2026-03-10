@@ -4,6 +4,7 @@
   home.packages = [ pkgs.zsh-powerlevel10k ];
   programs.eza.enable = true;
   programs.pay-respects.enable = true;
+  programs.direnv.enable = true;
 
   imports = [
     ./shell-aliases.nix
@@ -18,6 +19,7 @@
     completionInit = "autoload -Uz compinit && compinit && zstyle ':completion:*' completer _expand_alias _complete _ignored _correct && zstyle ':completion:*' regular true && zstyle ':completion:*' max-errors 2 && zstyle ':completion:*' rehash true"; # Still doesn't tab-complete aliases... not sure why.
     syntaxHighlighting.enable = true;
     historySubstringSearch.enable = true;
+    defaultKeymap = "viins";
 
     initContent =
       let
@@ -36,7 +38,7 @@
           fpath+=~/.zfunc  # python typer completions
           export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST  # Just cleans up ~ a little bit
         '';
-        zshConfig = lib.mkOrder 1000 ''
+        zshConfig = lib.mkOrder 1000 /* sh */ ''
           # Setup cdr instead of the directory stack
           #autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
           #add-zsh-hook chpwd chpwd_recent_dirs
@@ -48,11 +50,14 @@
           zle -N exit_zsh
           bindkey '^D' exit_zsh
 
+          bindkey -v
+          bindkey '^R' history-incremental-search-backward
+
           # oh-my-zsh/directories defines these for some reason, I use md as a markdown viewer
           unalias md
           unalias rd
         '';
-        zshConfigAfter = lib.mkOrder 1500 ''
+        zshConfigAfter = lib.mkOrder 1500 /* sh */ ''
           (( ''${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"  # After oh-my-zsh
           export PAGER=bat  # Set after oh-my-zsh
           eval "$(register-python-argcomplete ros2)"
@@ -139,5 +144,10 @@
   # 'thefuck' alternative
   programs.pay-respects = {
     enableZshIntegration = true;
+  };
+
+  # Direnv
+  programs.direnv = {
+    nix-direnv.enable = true;
   };
 }
