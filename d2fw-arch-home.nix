@@ -16,25 +16,13 @@
     texliveSmall
     pandoc
     lynx
-    (
-      with rosPackages.humble;
-      buildEnv {
-        paths = [
-          ros2-controllers
-          rqt-graph
-          rviz2
-        ];
-      }
-    )
-    # I put a list in your set in list in set
-    (lib.hiPrio (
-      pkgs.python313.withPackages (
-        ps: with ps; [
-          pylatexenc
-        ]
-      )
-    ))
   ];
+  ros2.extraRosPaths = with pkgs.rosPackages.humble; [
+    ros2-controllers
+    rqt-graph
+    rviz2
+  ];
+  ros2.extraPythonPackages = ps: with ps; [ pylatexenc ];
 
   targets.genericLinux.enable = true;
   targets.genericLinux.gpu.enable = true;
