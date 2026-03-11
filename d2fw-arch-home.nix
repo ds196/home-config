@@ -6,11 +6,11 @@
 }:
 {
   imports = [
-    ./shell.nix
-    ./arch-shell.nix
-    ./editor.nix
-    ./packages
-    ./packages/graphical.nix
+    ./modules/zsh-experience.nix
+    ./modules/arch-shell.nix
+    ./modules/neovim.nix
+    ./modules/packages
+    ./modules/packages/graphical.nix
   ];
   home.packages = with pkgs; [
     texliveSmall

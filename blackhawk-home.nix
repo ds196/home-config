@@ -6,9 +6,9 @@
 }:
 {
   imports = [
-    ./shell.nix
-    ./editor.nix
-    ./packages
+    ./modules/zsh-experience.nix
+    ./modules/neovim.nix
+    ./modules/packages
   ];
   home.packages = (
     with pkgs;
