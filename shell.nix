@@ -1,10 +1,13 @@
 { pkgs, lib, ... }:
 {
   programs.zsh.enable = true;
-  home.packages = [ pkgs.zsh-powerlevel10k ];
   programs.eza.enable = true;
   programs.pay-respects.enable = true;
   programs.direnv.enable = true;
+  home.packages = with pkgs; [
+    zsh-powerlevel10k
+    zsh-nix-shell
+  ];
 
   imports = [
     ./shell-aliases.nix
@@ -105,14 +108,14 @@
 
     plugins = [
       {
-        name = "powerlevel10k-config"; # Leaving this in just in case ig
-        src = ./packages;
-        file = ".p10k.uni.zsh";
-      }
-      {
         name = "zsh-powerlevel10k";
         src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
         file = "powerlevel10k.zsh-theme";
+      }
+      {
+        name = "zsh-nix-shell";
+        src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell/";
+        file = "nix-shell.plugin.zsh";
       }
     ];
 
