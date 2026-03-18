@@ -8,6 +8,7 @@
       ripgrep
       fd
       silver-searcher
+      fzf
       trash-cli
       bat
       rsync
@@ -16,5 +17,7 @@
       lsb-release
       tmux
       nh
+      jq
+      manix
     ]);
 }

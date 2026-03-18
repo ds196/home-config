@@ -60,5 +60,14 @@
         	echo
             return $CODE;
       '';
+      serial = # sh
+      ''
+        mkdir -p "$HOME/.tio-logs"
+        if [ ! -d "$HOME/.tio-logs" ]; then
+            return 1;
+        fi
+
+        tio -te --map INLCRNL --log --log-directory "$HOME/.tio-logs" "$1"
+    '';
   };
 }

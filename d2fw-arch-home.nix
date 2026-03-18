@@ -16,13 +16,18 @@
     texliveSmall
     pandoc
     lynx
+    tio
+    pre-commit
   ];
   ros2.extraRosPaths = with pkgs.rosPackages.humble; [
     ros2-controllers
     rqt-graph
     rviz2
   ];
-  ros2.extraPythonPackages = ps: with ps; [ pylatexenc ];
+  ros2.extraPythonPackages = ps: with ps; [
+    pylatexenc
+    typer
+  ];
 
   targets.genericLinux.enable = true;
   targets.genericLinux.gpu.enable = true;

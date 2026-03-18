@@ -97,6 +97,10 @@
       vscode-nvim
       snacks-nvim
       lualine-nvim
+      undotree
+      telescope-nvim
+      telescope-manix
+      telescope-coc-nvim
     ];
 
     coc = {

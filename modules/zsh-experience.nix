@@ -4,6 +4,8 @@
   programs.eza.enable = true;
   programs.pay-respects.enable = true;
   programs.direnv.enable = true;
+
+  # Addl. plugins
   home.packages = with pkgs; [
     zsh-powerlevel10k
     zsh-nix-shell
@@ -19,10 +21,22 @@
     enableVteIntegration = true;
     autocd = false;
     autosuggestion.enable = true;
-    completionInit = "autoload -Uz compinit && compinit && zstyle ':completion:*' completer _expand_alias _complete _ignored _correct && zstyle ':completion:*' regular true && zstyle ':completion:*' max-errors 2 && zstyle ':completion:*' rehash true"; # Still doesn't tab-complete aliases... not sure why.
-    syntaxHighlighting.enable = true;
-    historySubstringSearch.enable = true;
     defaultKeymap = "viins";
+    history = {
+      append = true;
+      expireDuplicatesFirst = true;
+      extended = true;
+      ignorePatterns = [ "fg" ];
+      ignoreSpace = true;
+      share = true;
+    };
+    historySubstringSearch.enable = true;
+    syntaxHighlighting = {
+      enable = true;
+      highlighters = [
+        "brackets"
+      ];
+    };
 
     initContent =
       let
@@ -41,43 +55,59 @@
           fpath+=~/.zfunc  # python typer completions
           export ZSH_COMPDUMP=$HOME/.cache/.zcompdump-$HOST  # Just cleans up ~ a little bit
         '';
-        zshConfig = lib.mkOrder 1000 /* sh */ ''
-          # Setup cdr instead of the directory stack
-          #autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-          #add-zsh-hook chpwd chpwd_recent_dirs
-          #zstyle ':completion:*:*:cdr:*:*' menu selection
-          #zstyle ':chpwd:*' recent-dirs-file ~/.zchpwd/chpwd-recent-dirs-''${TTY##*/} +
+        zshConfig =
+          lib.mkOrder 1000 # sh
+            ''
+              # Setup cdr instead of the directory stack
+              #autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+              #add-zsh-hook chpwd chpwd_recent_dirs
+              #zstyle ':completion:*:*:cdr:*:*' menu selection
+              #zstyle ':chpwd:*' recent-dirs-file ~/.zchpwd/chpwd-recent-dirs-''${TTY##*/} +
 
-          # Exit shell on Ctrl+D even if the command line is filled
-          exit_zsh() { exit }
-          zle -N exit_zsh
-          bindkey '^D' exit_zsh
+              # Exit shell on Ctrl+D even if the command line is filled
+              exit_zsh() { exit }
+              zle -N exit_zsh
+              bindkey '^D' exit_zsh
 
-          bindkey -v
-          bindkey '^R' history-incremental-search-backward
+              bindkey -v
+              bindkey '^R' history-incremental-search-backward
 
-          # oh-my-zsh/directories defines these for some reason, I use md as a markdown viewer
-          unalias md
-          unalias rd
-        '';
-        zshConfigAfter = lib.mkOrder 1500 /* sh */ ''
-          (( ''${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"  # After oh-my-zsh
-          export PAGER=bat  # Set after oh-my-zsh
-          eval "$(register-python-argcomplete ros2)"
-          eval "$(register-python-argcomplete colcon)"
-          [ -f $HOME/.ros2helpers.sh ] && source $HOME/.ros2helpers.sh
-          [ -f $HOME/.tmpros.sh ] && source $HOME/.tmpros.sh
+              # oh-my-zsh/directories defines these for some reason, I use md as a markdown viewer
+              unalias md
+              unalias rd
 
-          # Enforce powerlevel10k configuration depending on environment
-          # To customize prompt, run 'p10k configure' or edit ~/.p10k.zsh.
-          if [ "$TERM" = "linux" ]; then
-            [[ ! -f ~/.p10k.ascii.zsh ]]  || source ~/.p10k.ascii.zsh
-          elif [ "$TERM_PROGRAM" = "vscode" ]; then
-            [[ ! -f ~/.p10k.vscode.zsh ]] || source ~/.p10k.vscode.zsh
-          else
-            [[ ! -f ~/.p10k.uni.zsh ]]    || source ~/.p10k.uni.zsh
-          fi
-        '';
+              # Configure oh-my-zsh plugins
+              bgnotify_bell=false
+              bgnotify_threshold=30  # seconds
+              GIT_AUTO_FETCH_INTERVAL=1200  # seconds
+            '';
+        zshConfigAfter =
+          lib.mkOrder 1500 # sh
+            ''
+              # All following is ran after oh-my-zsh
+              (( ''${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
+              export PAGER=bat  # Must be set after oh-my-zsh
+              eval "$(register-python-argcomplete ros2)"
+              eval "$(register-python-argcomplete colcon)"
+
+              # Ctrl+D exits terminal even when typing command
+              exit_zsh() { exit }
+              zle -N exit_zsh
+              bindkey '^D' exit_zsh
+
+              [ -f $HOME/.ros2helpers.sh ] && source $HOME/.ros2helpers.sh
+              [ -f $HOME/.tmpros.sh ] && source $HOME/.tmpros.sh
+
+              # Enforce powerlevel10k configuration depending on environment
+              # To customize prompt, run 'p10k configure' or edit ~/.p10k.zsh.
+              if [ "$TERM" = "linux" ]; then
+                [[ ! -f ~/.p10k.ascii.zsh ]]  || source ~/.p10k.ascii.zsh
+              elif [ "$TERM_PROGRAM" = "vscode" ]; then
+                [[ ! -f ~/.p10k.vscode.zsh ]] || source ~/.p10k.vscode.zsh
+              else
+                [[ ! -f ~/.p10k.uni.zsh ]]    || source ~/.p10k.uni.zsh
+              fi
+            '';
       in
       lib.mkMerge [
         zshConfigEarlyInit
@@ -103,6 +133,12 @@
         "command-not-found"
         "copyfile"
         "z"
+        "bgnotify"
+        "ssh"
+        "safe-paste"
+        "gitignore"
+        "git-auto-fetch"
+        "copybuffer"
       ];
     };
 
@@ -120,8 +156,6 @@
     ];
 
     setOptions = [
-      "EXTENDED_HISTORY"
-      "HIST_IGNORE_SPACE"
       "INTERACTIVE_COMMENTS"
     ];
     shellAliases = {
