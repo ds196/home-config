@@ -132,10 +132,10 @@
 
   };
 
-  home.file.".p10k.ascii.zsh".source = packages/.p10k.ascii.zsh;
-  home.file.".p10k.vscode.zsh".source = packages/.p10k.vscode.zsh;
-  home.file.".p10k.uni.zsh".source = packages/.p10k.uni.zsh;
-  home.file.".ros2helpers.sh".source = packages/.ros2helpers.sh;
+  home.file.".p10k.ascii.zsh".source = ./.p10k.ascii.zsh;
+  home.file.".p10k.vscode.zsh".source = ./.p10k.vscode.zsh;
+  home.file.".p10k.uni.zsh".source = ./.p10k.uni.zsh;
+  home.file.".ros2helpers.sh".source = ./.ros2helpers.sh;
 
   # 'ls' alternative
   programs.eza = {

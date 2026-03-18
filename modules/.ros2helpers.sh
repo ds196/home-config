@@ -61,5 +61,10 @@ start_ws() {
 alias buildws='colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXPORT_COMPILE_COMMANDS=ON'
 
 # Just source a workspace. Just source it. Includes sourced workspaces when building.
-alias sourcews='source install/setup.$CURR_SHELL'
+function sourcews {
+    if [ ! -f "./install/setup.$CURR_SHELL" ]; then
+        return 1;
+    fi
+    source "install/setup.$CURR_SHELL"
+}
 
