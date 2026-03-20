@@ -10,6 +10,7 @@
     ./modules/arch-shell.nix
     ./modules/neovim.nix
     ./modules/packages
+    ./modules/packages/base-extra.nix
     ./modules/packages/graphical.nix
     ./modules/packages/ros2-extra.nix
     ./modules/git.nix
