@@ -2,6 +2,6 @@
 {
   imports = [
     ./ros2.nix
-    ./misc.nix
+    ./base.nix
   ];
 }

@@ -165,4 +165,12 @@
     };
 
   };
+
+  # Disable type hints in clangd
+  xdg.configFile."clangd/config.yaml".text = ''
+    InlayHints:
+      Enabled: Yes
+      ParameterNames: No
+      DeducedTypes: Yes
+  '';
 }

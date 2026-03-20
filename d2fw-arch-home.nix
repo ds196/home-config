@@ -11,6 +11,7 @@
     ./modules/neovim.nix
     ./modules/packages
     ./modules/packages/graphical.nix
+    ./modules/packages/ros2-extra.nix
   ];
   home.packages = with pkgs; [
     texliveSmall
@@ -20,9 +21,7 @@
     pre-commit
   ];
   ros2.extraRosPaths = with pkgs.rosPackages.humble; [
-    ros2-controllers
-    rqt-graph
-    rviz2
+    zed-msgs
   ];
   ros2.extraPythonPackages = ps: with ps; [
     pylatexenc

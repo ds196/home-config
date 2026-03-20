@@ -153,6 +153,15 @@
         src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell/";
         file = "nix-shell.plugin.zsh";
       }
+      {
+        name = "zsh-deja-vu";
+        src = pkgs.fetchFromGitHub {
+          owner = "justyntemme";
+          repo = "zsh-deja-vu";
+          rev = "1c3cc4dd771524a7f9a16efb509077c9d5ea61d9";
+          hash = "sha256-VThN17V6La7MRLdQtIzQ1cYYOKb1IUFomS+UJrTG1nY=";
+        };
+      }
     ];
 
     setOptions = [
@@ -187,4 +196,11 @@
   programs.direnv = {
     nix-direnv.enable = true;
   };
+  xdg.configFile."direnv/direnv.toml".text = ''
+    # https://esham.io/2023/10/direnv
+    [global]
+    log_format = "\u001B[2mdirenv: %s\u001B[0m"
+    hide_env_diff = true
+  '';
+
 }

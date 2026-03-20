@@ -3,7 +3,6 @@
   home.packages =
     (with pkgs; [
       nixfmt-rfc-style
-      zsh-nix-shell
       xclip
       ripgrep
       fd
