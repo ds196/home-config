@@ -12,6 +12,7 @@
     ./modules/packages
     ./modules/packages/graphical.nix
     ./modules/packages/ros2-extra.nix
+    ./modules/git.nix
   ];
   home.packages = with pkgs; [
     texliveSmall
