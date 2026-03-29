@@ -14,6 +14,8 @@
     ./modules/packages/graphical.nix
     ./modules/packages/ros2-extra.nix
     ./modules/git.nix
+    ./modules/tmux.nix
+    ./modules/syncthing.nix
   ];
   home.packages = with pkgs; [
     texliveSmall
