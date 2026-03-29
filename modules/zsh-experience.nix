@@ -87,8 +87,6 @@
               # All following is ran after oh-my-zsh
               (( ''${+commands[direnv]} )) && emulate zsh -c "$(direnv hook zsh)"
               export PAGER=bat  # Must be set after oh-my-zsh
-              eval "$(register-python-argcomplete ros2)"
-              eval "$(register-python-argcomplete colcon)"
 
               # Ctrl+D exits terminal even when typing command
               exit_zsh() { exit }

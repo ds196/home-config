@@ -8,7 +8,7 @@
   imports = [
     ./modules/zsh-experience.nix
     ./modules/neovim.nix
-    ./modules/packages
+    ./modules/packages/base.nix
   ];
   home.packages = (
     with pkgs;

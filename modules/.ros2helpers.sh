@@ -14,6 +14,12 @@ ROS_DISTRO=humble  # Default to Humble if not on Ubuntu
 
 CURR_SHELL=$(ps -cp "$$" -o command="")
 
+# Command completions
+if command -v register-python-argcomplete >/dev/null 2>&1; then
+    eval "$(register-python-argcomplete ros2)"
+    eval "$(register-python-argcomplete colcon)"
+fi
+
 
 # Source main ROS2 underlay
 if command -v ros2 >/dev/null 2>&1; then
