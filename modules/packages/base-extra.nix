@@ -7,5 +7,7 @@
       jq
       manix
       delta
+      vcstool
+      valgrind
     ]);
 }
