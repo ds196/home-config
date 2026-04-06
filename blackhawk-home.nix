@@ -9,6 +9,7 @@
     ./modules/zsh-experience.nix
     ./modules/neovim.nix
     ./modules/packages/base.nix
+    ./modules/tmux.nix
   ];
   home.packages = (
     with pkgs;

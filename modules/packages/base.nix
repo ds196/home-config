@@ -10,7 +10,6 @@
       gnutar
       curl
       lsb-release
-      tmux
       nh
       silver-searcher
       fzf
