@@ -16,6 +16,7 @@
     ros2-controllers
     rqt-graph
     rviz2
+    rqt-common-plugins
   ];
   ros2.extraPythonPackages =
     ps: with ps; [
@@ -23,5 +24,7 @@
       pygame
       scipy
       crccheck
+      bpython
+      matplotlib
     ];
 }

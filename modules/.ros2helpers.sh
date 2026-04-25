@@ -61,8 +61,8 @@ start_ws() {
         cd $DIR
     fi
     #echo "PATH: $PATH"
-    echo "COLCON_PREFIX_PATH: $COLCON_PREFIX_PATH"
-    echo "colcon: $(which colcon)"
+    #echo "COLCON_PREFIX_PATH: $COLCON_PREFIX_PATH"
+    #echo "colcon: $(which colcon)"
 
 	if [ ! -f "./install/setup.$CURR_SHELL" ]; then
         buildws

@@ -2,9 +2,10 @@
 {
   programs.zsh.shellAliases = {
     "pacin" = "sudo pacman -S";
-    "startfocal" = "sudo ~/scripts/tschroot.sh ~/myfocal";
+    "startfocal" = "sudo ~/scripts/tschroot.sh /var/chroot/focal";
     "startjammy" = "sudo ~/scripts/tschroot.sh /mnt/Ubuntu22";
     "startnoble" = "sudo ~/scripts/tschroot.sh /mnt/Ubuntu24";
+    "startresolute" = "sudo ~/scripts/tschroot.sh /var/chroot/resolute";
     "nord" = "sudo systemctl start nordvpnd && nordvpn connect us";
   };
   programs.zsh.siteFunctions = {

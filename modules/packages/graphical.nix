@@ -4,5 +4,11 @@
     logisim-evolution
     zed-editor-fhs
     qtcreator
+    android-studio
+    alttab
+    arduino-ide
+    audacity
+    blender
+    discord
   ];
 }

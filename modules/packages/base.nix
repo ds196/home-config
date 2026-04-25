@@ -13,5 +13,6 @@
       nh
       silver-searcher
       fzf
+      btop
     ]);
 }
