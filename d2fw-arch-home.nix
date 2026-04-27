@@ -6,26 +6,24 @@
 }:
 {
   imports = [
-    ./modules/zsh-experience.nix
-    ./modules/arch-shell.nix
+    ./modules/shell-arch.nix
+    ./modules/git.nix
     ./modules/neovim.nix
+    ./modules/syncthing.nix
+    ./modules/tmux.nix
+    ./modules/zsh-experience.nix
     ./modules/packages
     ./modules/packages/base-extra.nix
     ./modules/packages/graphical.nix
     ./modules/packages/ros2-extra.nix
-    ./modules/git.nix
-    ./modules/tmux.nix
-    ./modules/syncthing.nix
   ];
+
   home.packages = with pkgs; [
     texliveSmall
     pandoc
     lynx
     tio
     pre-commit
-  ];
-  ros2.extraRosPaths = with pkgs.rosPackages.humble; [
-    zed-msgs
   ];
   ros2.extraPythonPackages = ps: with ps; [
     pylatexenc

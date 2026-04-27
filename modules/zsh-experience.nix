@@ -12,7 +12,7 @@
   ];
 
   imports = [
-    ./shell-aliases.nix
+    ./shell-misc.nix
   ];
 
   # Shell

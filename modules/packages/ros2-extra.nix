@@ -17,6 +17,7 @@
     rqt-graph
     rviz2
     rqt-common-plugins
+    zed-msgs
   ];
   ros2.extraPythonPackages =
     ps: with ps; [
