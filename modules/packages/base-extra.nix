@@ -16,5 +16,8 @@
       can-utils
       cmd-wrapped
       nmap
+      tio
+      screen
+      yazi
     ]);
 }

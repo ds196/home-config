@@ -20,9 +20,6 @@
 
   home.packages = with pkgs; [
     texliveSmall
-    pandoc
-    lynx
-    tio
     pre-commit
   ];
   ros2.extraPythonPackages = ps: with ps; [
@@ -30,8 +27,9 @@
     typer
   ];
 
-  targets.genericLinux.enable = true;
-  targets.genericLinux.gpu.enable = true;
+  targets.genericLinux.enable = true;  # Does some stuff for better non-NixOS
+  targets.genericLinux.gpu.enable = true;  # Install nix-compatible GPU drivers in /run/opengl-driver/
+  targets.genericLinux.nixGL.prime.installScript = "nvidia";  # PRIME Render Offloading
 
   home = {
     # My laptop -- david@d2framework

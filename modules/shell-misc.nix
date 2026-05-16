@@ -21,16 +21,9 @@
 
     "sl" = "ls";
     ":q" = "exit";
-    "nixgl" = "nixGLIntel";
   };
 
   programs.zsh.siteFunctions = {
-    md = ''
-      pandoc "''${1:-README.md}" | lynx -stdin
-    '';
-    led_off = ''
-      ros2 topic pub --once /anchor/relay std_msgs/String "{data: 'led_set,0,0,0\n'}"
-    '';
     c = # sh
       ''
         	# Compile a c/cpp program
@@ -60,7 +53,7 @@
         	echo
             return $CODE;
       '';
-      serial = # sh
+    serial = # sh
       ''
         mkdir -p "$HOME/.tio-logs"
         if [ ! -d "$HOME/.tio-logs" ]; then
@@ -68,6 +61,6 @@
         fi
 
         tio -te --map INLCRNL --log --log-directory "$HOME/.tio-logs" "$1"
-    '';
+      '';
   };
 }

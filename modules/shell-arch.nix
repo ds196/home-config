@@ -1,5 +1,9 @@
 { pkgs, lib, ... }:
 {
+  home.packages = with pkgs; [
+    pandoc
+    lynx
+  ];
   programs.zsh.shellAliases = {
     "pacin" = "sudo pacman -S";
     "startfocal" = "sudo ~/scripts/tschroot.sh /var/chroot/focal";
@@ -9,6 +13,9 @@
     "nord" = "sudo systemctl start nordvpnd && nordvpn connect us";
   };
   programs.zsh.siteFunctions = {
+    md = ''
+      pandoc "''${1:-README.md}" | lynx -stdin
+    '';
     launch_camara = ''
       if [ -z "''${1}" ]; then
         echo "Please add a number for the camera"

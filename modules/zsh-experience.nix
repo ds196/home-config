@@ -64,6 +64,12 @@
               #zstyle ':completion:*:*:cdr:*:*' menu selection
               #zstyle ':chpwd:*' recent-dirs-file ~/.zchpwd/chpwd-recent-dirs-''${TTY##*/} +
 
+              # Expand aliases on TAB - https://superuser.com/a/1514591
+              autoload -Uz compinit; compinit;
+              bindkey "^Xa" _expand_alias
+              zstyle ':completion:*' completer _expand_alias _complete _ignored
+              zstyle ':completion:*' regular true
+
               # Exit shell on Ctrl+D even if the command line is filled
               exit_zsh() { exit }
               zle -N exit_zsh

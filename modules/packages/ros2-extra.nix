@@ -18,6 +18,14 @@
     rviz2
     rqt-common-plugins
     zed-msgs
+    teleop-twist-keyboard
+    teleop-twist-joy
+    teleop-tools
+    mouse-teleop
+    plotjuggler
+    plotjuggler-ros
+    tf2-tools
+    # rtsp-image-transport  # Only available for rolling and jazzy
   ];
   ros2.extraPythonPackages =
     ps: with ps; [
@@ -27,5 +35,7 @@
       crccheck
       bpython
       matplotlib
+      mypy
+      build
     ];
 }

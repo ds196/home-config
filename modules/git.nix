@@ -21,7 +21,7 @@
       {
         path = "~/.config/git/laptop_key.inc";
         contents = {
-          signingkey = "38211C0985C4B55";
+          signingkey = "38211C0985C4B55F";
         };
       }
     ];
@@ -32,7 +32,9 @@
         signingkey = "38211C0985C4B55F";
       };
       init.defaultBranch = "main";
-      core.pager = "${pkgs.bat}/bin/bat -p";
+      pager.blame = "delta";
+      core.pager = "less -R";
+      delta.pager = "less -R";
     };
     signing = {
       format = "openpgp";
